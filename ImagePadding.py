@@ -13,6 +13,7 @@ class ImagePadding:
                 "image": ("IMAGE",),
                 "padding": ("INT", {"default": 0, "min": 0, "max": 8192, "step": 1}),
                 "blur": ("FLOAT", {"default": 0, "min": 0, "max": 50, "step": 0.1}),
+                "color": (["black", "white","transparent"],)
             }
         }
     CATEGORY = "TrollSuite/image"
@@ -21,11 +22,9 @@ class ImagePadding:
     FUNCTION = "ImagePadding"
 
 
-    def ImagePadding(self, image, padding, blur):
+    def ImagePadding(self, image, padding, blur, color):
         image = tensor_to_image(image)
-        original_size = image.size
-        image = apply_padding(image, padding, "black")
+        image = apply_padding(image, padding, color)
         image = apply_blur(image, blur)
-        #image = resize_image(image, original_size)
         image = image_to_tensor(image)
         return (image,)

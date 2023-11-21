@@ -1,5 +1,6 @@
 from torchvision import transforms
 from PIL import Image
+
 def image_to_rgba(image: Image, gray_image: Image)->Image:
     
     # Resize the grayscale image to match the size of the color image
@@ -12,8 +13,6 @@ def image_to_rgba(image: Image, gray_image: Image)->Image:
     if image.mode != "RGBA":
         image = image.convert("RGBA")
 
-    print(image.size, gray_image.size)
-    
     # Make sure gray_image is in mode 'L' (grayscale)
     if gray_image.mode != 'L':
         gray_image = gray_image.convert('L')

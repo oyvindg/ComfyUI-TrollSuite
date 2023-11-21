@@ -1,13 +1,13 @@
 from .BinaryImageMask import BinaryImageMask
 from .ImagePadding import ImagePadding
-from .LoadLastCreatedImage import LoadLastCreatedImage
+from .LoadLastImage import LoadLastImage
 from .RandomMask import RandomMask
 from .TransparentImage import TransparentImage
 
 NODE_CLASS_MAPPINGS = {
     "BinaryImageMask": BinaryImageMask,
     "ImagePadding": ImagePadding,
-    "LoadLastCreatedImage": LoadLastCreatedImage,
+    "LoadLastImage": LoadLastImage,
     "RandomMask": RandomMask,
     "TransparentImage": TransparentImage
 }

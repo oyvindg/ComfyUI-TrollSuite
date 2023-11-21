@@ -7,15 +7,16 @@ from .utils.apply_blur import apply_blur
 from .utils.tensor_to_image import tensor_to_image
 from .utils.image_to_tensor import image_to_tensor
 from .utils.image_to_mask import image_to_mask
+from .utils.create_random_mask import create_random_mask
 
 class RandomMask:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": {
                 "image": ("IMAGE",),
+                "noise": ("FLOAT", {"default": 0, "min": 0.0, "max": 1.0, "step": 0.1}),
                 "padding": ("INT", {"default": 0, "min": 0, "max": 512, "step": 1}),
                 "blur": ("FLOAT", {"default": 0, "min": 0, "max": 50, "step": 0.1}),
-                "facets": ("INT", {"default": 10, "min": 1, "max": 50, "step": 1}),
             }
         }
 
@@ -24,12 +25,12 @@ class RandomMask:
     RETURN_NAMES = ("image", "mask",)
     FUNCTION = "RandomMask"
 
-    def RandomMask(self, image: Tensor, padding: float, blur: float, facets: int = 50) -> tuple[Tensor]:
+    def RandomMask(self, image: Tensor, noise: int, padding: float, blur: float) -> tuple[Tensor]:
         original_image = image
         image:Image = tensor_to_image(image)
-        image:Image = self.draw_image_shape(image.size, facets)
-        image = apply_blur(image, blur)
+        image:Image = create_random_mask(image.size, noise)
         image = apply_padding(image, padding, "black")
+        image = apply_blur(image, blur)
         image = image_to_tensor(image)
         mask = image_to_mask(image)
         return (original_image, mask,)

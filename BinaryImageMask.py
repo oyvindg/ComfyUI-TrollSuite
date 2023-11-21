@@ -17,8 +17,8 @@ class BinaryImageMask:
                 }
 
     CATEGORY = "TrollSuite/mask"
-    RETURN_TYPES = ("MASK","IMAGE",)
-    RETURN_NAMES = ("mask","image",)
+    RETURN_TYPES = ("IMAGE","MASK",)
+    RETURN_NAMES = ("image","mask",)
 
     FUNCTION = "BinaryImageMask"
 
@@ -30,7 +30,7 @@ class BinaryImageMask:
         image = image.point(lambda x: 255 if x > threshold else 0)
         image = image_to_tensor(image)
         mask = image[:,:,:]
-        return (mask,original_image,)
+        return (original_image,mask,)
     
     @classmethod
     def IS_CHANGED(self):

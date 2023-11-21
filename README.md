@@ -1,21 +1,9 @@
 # ComfyUI-TrollSuite
 
-## BinaryImageMask
+## Nodes
 
-TODO
-
-## ImagePadding
-
-TODO
-
-## LoadLastCreatedImage
-
-TODO
-
-## RandomMask
-
-TODO
-
-## TransparentImage
-
-TODO
+- BinaryImageMask
+- ImagePadding
+- LoadLastImage
+- RandomMask
+- TransparentImage
