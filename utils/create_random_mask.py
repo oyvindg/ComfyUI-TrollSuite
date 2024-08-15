@@ -1,10 +1,14 @@
 import numpy as np
-from PIL import Image, ImageOps
+from PIL import Image
 from io import BytesIO
 import matplotlib.pyplot as plt
 
-def create_random_mask(size, noise):
-    
+def create_random_mask(size, noise, background_color="white"):
+
+    foreground_color = "black"
+    if background_color == "black":
+        foreground_color = "white"
+
     # scale noise
     noise = int(noise * (100 - 20) + 20)
 
@@ -23,10 +27,10 @@ def create_random_mask(size, noise):
     y = r * np.sin(theta)
     
     # Draw the figure with black background
-    fig, ax = plt.subplots(figsize=(6, 6), facecolor='black')
+    fig, ax = plt.subplots(figsize=(6, 6), facecolor=background_color)
     
-    ax.plot(x, y, color='white', lw=2)  # Change the color of the wave to white
-    ax.fill(x, y, 'white')  # fill the circle with white color
+    ax.plot(x, y, color=foreground_color, lw=2)  # Change the color of the wave to white
+    ax.fill(x, y, foreground_color)  # fill the circle with white color
     ax.set_aspect('equal', adjustable='box') # This line ensures the circle is not an ellipse
     
     # Remove axes for a cleaner look
@@ -46,7 +50,7 @@ def create_random_mask(size, noise):
     image = image.resize((image_size, image_size))
     
     # create black background with original size
-    background_image = Image.new("RGB", size, "black")
+    background_image = Image.new("RGB", size, background_color)
 
     # find centered position
     lw, lh = background_image.size

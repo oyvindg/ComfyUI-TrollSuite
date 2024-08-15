@@ -52,7 +52,9 @@ class LoadLastImage:
         directory_path = os.path.abspath(directory_path)
 
         # get filepaths of all files and dirs in the given dir
-        valid_files = [os.path.join(directory_path, filename) for filename in os.listdir(directory_path)]
+        valid_files = [os.path.join(directory_path, filename) 
+               for filename in os.listdir(directory_path) 
+               if os.path.isfile(os.path.join(directory_path, filename))]
 
         if not valid_files:
             return None

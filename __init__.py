@@ -1,4 +1,6 @@
 from .BinaryImageMask import BinaryImageMask
+from .BackgroundColor import BackgroundColor
+from .ImageComposite import ImageComposite
 from .ImagePadding import ImagePadding
 from .LoadLastImage import LoadLastImage
 from .RandomMask import RandomMask
@@ -8,6 +10,8 @@ NODE_CLASS_MAPPINGS = {
     "BinaryImageMask": BinaryImageMask,
     "ImagePadding": ImagePadding,
     "LoadLastImage": LoadLastImage,
+    "ImageComposite": ImageComposite,
+    "BackgroundColor": BackgroundColor,
     "RandomMask": RandomMask,
     "TransparentImage": TransparentImage
 }
